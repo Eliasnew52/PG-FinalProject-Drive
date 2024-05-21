@@ -6,7 +6,7 @@ from models import *
 from camera import Camera
 
 class GraphicsEngine:
-    def __init__(self, win_size = (720,400)):
+    def __init__(self, win_size = (1080,720)):
         #inicializamos el modulo de PyGame
         PG.init()
         #Definimos un tamaño de Pantalla
@@ -23,6 +23,8 @@ class GraphicsEngine:
 
         #Detectamos y Creamos el Contexto de OpenGL
         self.context= mgl.create_context()
+        #self.context.front_face='cw'
+        self.context.enable(flags=mgl.DEPTH_TEST | mgl.CULL_FACE)
 
         #Creacion del Objeto Camera
         self.camera = Camera(self)
