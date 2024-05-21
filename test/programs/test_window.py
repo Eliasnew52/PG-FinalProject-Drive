@@ -3,6 +3,7 @@ import moderngl as mgl
 import numpy
 import sys
 from models import *
+from camera import Camera
 
 class GraphicsEngine:
     def __init__(self, win_size = (720,400)):
@@ -23,9 +24,12 @@ class GraphicsEngine:
         #Detectamos y Creamos el Contexto de OpenGL
         self.context= mgl.create_context()
 
+        #Creacion del Objeto Camera
+        self.camera = Camera(self)
+
         #Creacion de un Objeto para medir el Tiempo
         self.clock = PG.time.Clock()
-        self.scene = Triangle(self)
+        self.scene = Cube(self)
 
 
 
