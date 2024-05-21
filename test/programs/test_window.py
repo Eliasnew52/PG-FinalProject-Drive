@@ -2,6 +2,7 @@ import pygame as PG
 import moderngl as mgl
 import numpy
 import sys
+from models import *
 
 class GraphicsEngine:
     def __init__(self, win_size = (720,400)):
@@ -24,17 +25,22 @@ class GraphicsEngine:
 
         #Creacion de un Objeto para medir el Tiempo
         self.clock = PG.time.Clock()
+        self.scene = Triangle(self)
+
 
 
     def Check_Events(self):
         for event in PG.event.get():
-            if event == PG.QUIT or (event.type == PG.KEYDOWN and event.type == PG.K_ESCAPE):
+            print(event)
+            if event == PG.QUIT or (event.type == PG.KEYDOWN and event.key == PG.K_ESCAPE):
+                self.scene.destroy()
                 PG.quit()
                 sys.exit()
 
     def Render(self):
         #Limpiar el FrameBuffer
         self.context.clear(color=(0.08,0.16,0.18))
+        self.scene.render()
         PG.display.flip()
 
     def Run(self):
