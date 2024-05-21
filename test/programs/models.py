@@ -1,4 +1,5 @@
 import numpy as np
+import glm
 
 class Triangle:
     def __init__(self,app):
@@ -43,6 +44,7 @@ class Triangle:
         return program
 
 
+## 3D CUBE MODEL RENDERING
 class Cube:
     def __init__(self,app):
         self.app = app
@@ -50,13 +52,23 @@ class Cube:
         self.VBO = self.get_VBO()
         self.ShaderProgram = self.get_shader_program('default')
         self.VAO = self.get_VAO()
+        self.model_matrix = self.get_model_matrix()
         self.on_init()
+
+    def update(self):
+        matrix_model = glm.rotate(self.model_matrix, self.app.time, glm.vec3(0,1,0))
+        self.ShaderProgram['model_matrix'].write(matrix_model)
+    def get_model_matrix(self):
+        matrix_model = glm.mat4()
+        return matrix_model
     
     def on_init(self):
         self.ShaderProgram['projection_matrix'].write(self.app.camera.projection_matrix)
         self.ShaderProgram['view_matrix'].write(self.app.camera.view_matrix)
+        self.ShaderProgram['model_matrix'].write(self.model_matrix)
 
     def render(self):
+        self.update()
         self.VAO.render()
     
     def destroy(self):

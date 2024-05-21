@@ -29,6 +29,8 @@ class GraphicsEngine:
 
         #Creacion de un Objeto para medir el Tiempo
         self.clock = PG.time.Clock()
+        self.time = 0
+        #Scene
         self.scene = Cube(self)
 
 
@@ -46,9 +48,13 @@ class GraphicsEngine:
         self.context.clear(color=(0.08,0.16,0.18))
         self.scene.render()
         PG.display.flip()
+    
+    def get_time(self):
+        self.time = PG.time.get_ticks() * 0.001
 
     def Run(self):
         while True:
+            self.get_time()
             self.Check_Events()
             self.Render()
             self.clock.tick(60)
