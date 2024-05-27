@@ -4,11 +4,17 @@ import numpy
 import sys
 from models import *
 from camera import Camera
+from SoundEngine import AudioEngine
 
 class GraphicsEngine:
     def __init__(self, win_size = (1080,720)):
         #inicializamos el modulo de PyGame
+       
         PG.init()
+        
+        #Music
+        PG.mixer.init()
+
         #Definimos un tamaño de Pantalla
         self.WIN_SIZE = win_size
         #Configuracion de Atributos de OpenGL
@@ -35,6 +41,7 @@ class GraphicsEngine:
         self.delta_time = 0
         #Scene
         self.scene = Cube(self)
+        self.AudioEng = AudioEngine
 
 
 
@@ -56,6 +63,7 @@ class GraphicsEngine:
         self.time = PG.time.get_ticks() * 0.001
 
     def Run(self):
+        self.AudioEng.Global_Audio("Nightcall")
         while True:
             self.get_time()
             self.Check_Events()
