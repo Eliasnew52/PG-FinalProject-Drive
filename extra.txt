@@ -1,3 +1,6 @@
 Euler Angle [ usefull info to understand Camera rotation]
 
 Phong Illumination [ Product of the sum of ambient light +  diffuse and specular ]
+
+
+Object Interaction [ Ray Casting ]

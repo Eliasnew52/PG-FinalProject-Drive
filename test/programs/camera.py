@@ -1,5 +1,6 @@
 import glm
 import pygame as PG
+from SoundEngine import AudioEngine
 
 FieldOfView = 50
 NEAR = 0.1
@@ -30,6 +31,7 @@ class Camera:
     def Movement(self):
         velocity = SPEED * self.app.delta_time
         keys = PG.key.get_pressed()
+        
         # Forward and Back Buttons
         # KEY W PRESSED
         if keys[PG.K_w]:
@@ -53,6 +55,12 @@ class Camera:
         # KEY E PRESSED
         if keys[PG.K_e]:
             self.position -= self.up * velocity
+        
+        if keys[PG.K_SPACE]:
+            AudioEngine.Pause_GA()
+
+        if keys[PG.K_BACKSPACE]:
+            AudioEngine.Resume_GA()
     
 
     def get_view_matrix(self):
