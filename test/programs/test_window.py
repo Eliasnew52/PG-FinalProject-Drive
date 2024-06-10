@@ -4,6 +4,7 @@ import numpy
 import sys
 from models import *
 from camera import Camera
+from RayCast import RayCast_Camera
 from SoundEngine import AudioEngine
 
 class GraphicsEngine:
@@ -27,13 +28,17 @@ class GraphicsEngine:
         #Trabajaremos con Dos Buffers para Dibujar, Uno se Muestra, mientras que el otro Dibuja
         #Una vez se termine de dibujar, los Buffers se cambia de lugar para mostrar el Dibujo y se repite
 
+        #Configuracion del Mouse
+        PG.event.set_grab(True)
+        PG.mouse.set_visible(False)
+
         #Detectamos y Creamos el Contexto de OpenGL
         self.context= mgl.create_context()
         #self.context.front_face='cw'
         self.context.enable(flags=mgl.DEPTH_TEST | mgl.CULL_FACE)
 
         #Creacion del Objeto Camera
-        self.camera = Camera(self)
+        self.camera = RayCast_Camera(self)
 
         #Creacion de un Objeto para medir el Tiempo
         self.clock = PG.time.Clock()
@@ -43,11 +48,10 @@ class GraphicsEngine:
         self.scene = Cube(self)
         self.AudioEng = AudioEngine
 
-
+      
 
     def Check_Events(self):
         for event in PG.event.get():
-            print(event)
             if event == PG.QUIT or (event.type == PG.KEYDOWN and event.key == PG.K_ESCAPE):
                 self.scene.destroy()
                 PG.quit()
