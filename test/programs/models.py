@@ -21,13 +21,14 @@ class Cube:
     def get_texture(self, path):
         texture = PG.image.load(path).convert()
         texture = PG.transform.flip(texture, flip_x=False, flip_y=True)
+       # texture.fill('red')
         texture = self.context.texture(size = texture.get_size(), components =3, data=PG.image.tostring(texture,'RGB'))
         return texture
 
     def update(self):
         #Rotates de Cube
-       # matrix_model = glm.rotate(self.model_matrix, self.app.time, glm.vec3(0,1,0))
-        matrix_model = self.model_matrix
+        matrix_model = glm.rotate(self.model_matrix, self.app.time, glm.vec3(0,1,0))
+        #matrix_model = self.model_matrix
         self.ShaderProgram['model_matrix'].write(matrix_model)
         self.ShaderProgram['view_matrix'].write(self.app.camera.view_matrix)
     
@@ -37,6 +38,10 @@ class Cube:
         return matrix_model
     
     def on_init(self):
+        #Light
+        self.ShaderProgram['light.position'].write(self.app.Light.position)
+        self.ShaderProgram['light.Ambient'].write(self.app.Light.Ambient)
+        self.ShaderProgram['light.Diffuse'].write(self.app.Light.Diffuse)
         #Textures
         self.ShaderProgram['u_texture_0'] =0
         self.texture.use()
@@ -57,7 +62,7 @@ class Cube:
 
     
     def get_VAO(self):
-        vao = self.context.vertex_array(self.ShaderProgram,[(self.VBO, '2f 3f', 'in_texcoord_0','in_position')])
+        vao = self.context.vertex_array(self.ShaderProgram,[(self.VBO, '2f 3f 3f', 'in_texcoord_0','in_normal','in_position')])
         return vao
 
     def get_vertex_data(self):
@@ -85,6 +90,15 @@ class Cube:
         
         texture_coords_data = self.get_data(texture_coords,texture_coords_indices)
 
+        normals = [(0,0,1)*6,
+                   (1,0,0)*6,
+                   (0,0,-1)*6,
+                   (-1,0,0)*6,
+                   (0,1,0)*6,
+                   (0,-1,0)*6,]
+        
+        normals = np.array(normals,dtype='f4').reshape(36,3)
+        vertex_data=np.hstack([normals,vertex_data])
         vertex_data = np.hstack([texture_coords_data,vertex_data])
         return vertex_data
     

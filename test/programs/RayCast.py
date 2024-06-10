@@ -26,6 +26,9 @@ class RayCast_Camera:
         #Matriz de Proyeccion
         self.projection_matrix = self.get_projection_matrix()
 
+        #Raycast Interaction Logic
+        
+
 
     # RAY CASTING
     def get_ray_from_mouse(self):
@@ -81,6 +84,7 @@ class RayCast_Camera:
 
     
     def Update(self):
+        keys = PG.key.get_pressed()
         self.Movement()
         self.Rotate()
         self.Update_Camera_Vect()
@@ -94,10 +98,10 @@ class RayCast_Camera:
         
         intersected = self.ray_intersects_aabb(ray_origin, ray_direction, aabb_min, aabb_max)
         
-        if intersected:
+        if intersected and keys[PG.K_e]:
+            AudioEngine.Pause_GA()
             print("Intersection detected!")
-        else:
-            print("No Intersect")
+        
 
 
     def Movement(self):
@@ -122,14 +126,14 @@ class RayCast_Camera:
         
         # Up and Down Buttons
         # KEY Q PRESSED
-        if keys[PG.K_q]:
-            self.position += self.up * velocity
+        ##if keys[PG.K_q]:
+            #self.position += self.up * velocity
         # KEY E PRESSED
-        if keys[PG.K_e]:
-            self.position -= self.up * velocity
+        ##if keys[PG.K_e]:
+            #self.position -= self.up * velocity
         
-        if keys[PG.K_SPACE]:
-            AudioEngine.Pause_GA()
+        #if keys[PG.K_SPACE]:
+            #AudioEngine.Pause_GA()
 
         if keys[PG.K_BACKSPACE]:
             AudioEngine.Resume_GA()

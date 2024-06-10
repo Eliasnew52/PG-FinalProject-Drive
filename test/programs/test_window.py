@@ -2,10 +2,12 @@ import pygame as PG
 import moderngl as mgl
 import numpy
 import sys
+
 from models import *
 from camera import Camera
 from RayCast import RayCast_Camera
 from SoundEngine import AudioEngine
+from LightEngine import Light
 
 class GraphicsEngine:
     def __init__(self, win_size = (1080,720)):
@@ -30,7 +32,7 @@ class GraphicsEngine:
 
         #Configuracion del Mouse
         PG.event.set_grab(True)
-        PG.mouse.set_visible(False)
+        PG.mouse.set_visible(True)
 
         #Detectamos y Creamos el Contexto de OpenGL
         self.context= mgl.create_context()
@@ -44,6 +46,10 @@ class GraphicsEngine:
         self.clock = PG.time.Clock()
         self.time = 0
         self.delta_time = 0
+
+        #Light
+
+        self.Light = Light()
         #Scene
         self.scene = Cube(self)
         self.AudioEng = AudioEngine
