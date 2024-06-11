@@ -7,11 +7,11 @@ pygame.init()
 SCREEN = pygame.display.set_mode((1920, 1080))
 pygame.display.set_caption("Menu")
 
-BG = pygame.image.load("PG-FinalProject-Drive/test/menu_system/assets/main_menu_bg3.png")
+
+BG = pygame.image.load("menu_system\\assets\main_menu_bg3.png")
 
 def get_font(size): # Returns Press-Start-2P in the desired size
-    return pygame.font.Font("PG-FinalProject-Drive/test/menu_system/assets/social.otf", size)
-
+    return pygame.font.Font("menu_system\\assets\social.otf", size)
 def play():
     app = GraphicsEngine()
     app.Run()
@@ -78,7 +78,7 @@ def main_menu():
 
         PLAY_BUTTON = Button(image=None, pos=(SCREEN.get_width()/2, SCREEN.get_height()/2 + 150 ), 
                             text_input="PLAY", font=get_font(100), base_color="White", hovering_color="Pink")
-        OPTIONS_BUTTON = Button(image=pygame.image.load("PG-FinalProject-Drive/test/menu_system/assets/gear2.png"), pos=(SCREEN.get_width() - 70, SCREEN.get_height() - 70), 
+        OPTIONS_BUTTON = Button(image=pygame.image.load("menu_system/assets/gear2.png"), pos=(SCREEN.get_width() - 70, SCREEN.get_height() - 70), 
                             text_input="", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
         QUIT_BUTTON = Button(image=None, pos=(120, SCREEN.get_height() - 70), 
                             text_input="QUIT", font=get_font(75), base_color="White", hovering_color="Red")

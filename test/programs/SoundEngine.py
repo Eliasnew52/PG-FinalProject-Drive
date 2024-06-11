@@ -13,7 +13,7 @@ class AudioEngine:
     
 
     def Global_Audio(song):      #Modulo Mixer para la Musica
-        PG.mixer.music.load(f'PG-FinalProject-Drive/test/programs/music/{song}.mp3')
+        PG.mixer.music.load(f'programs/music/{song}.mp3')
         PG.mixer.music.play(fade_ms=2000)
     
 
