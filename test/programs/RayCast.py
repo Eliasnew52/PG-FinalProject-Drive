@@ -1,19 +1,23 @@
 import glm
 import pygame as PG
 from programs.SoundEngine import AudioEngine
+from programs.LightEngine import Light
+
 
 FieldOfView = 50
 NEAR = 0.1
 FAR = 100
 SPEED = 0.01
 SENSIVITY = 0.25
+MUSIC_PLAY = True
 class RayCast_Camera:
-    def __init__(self,app, position =(0,0,4), pitch = 0 , yaw = 90 ):
+    def __init__(self,app, light, position =(0,0,4), pitch = 0 , yaw = 90 ):
         self.app = app
         self.aspect_ratio = app.WIN_SIZE[0] / app.WIN_SIZE[1]
         self.position = glm.vec3(position)
         self.yaw = yaw
         self.pitch = pitch
+        self.MUSIC_PLAY = True
 
         #Camera Movement Parameters
         self.up = glm.vec3(0,1,0)
@@ -26,7 +30,8 @@ class RayCast_Camera:
         #Matriz de Proyeccion
         self.projection_matrix = self.get_projection_matrix()
 
-        #Raycast Interaction Logic
+        #Light Instance
+        self.light = light
         
 
 
@@ -98,10 +103,18 @@ class RayCast_Camera:
         
         intersected = self.ray_intersects_aabb(ray_origin, ray_direction, aabb_min, aabb_max)
         
-        if intersected and keys[PG.K_e]:
+        if intersected and keys[PG.K_e] == 1 and self.MUSIC_PLAY:
             AudioEngine.Pause_GA()
             print("Intersection detected!")
-        
+            self.MUSIC_PLAY = False
+        elif intersected and keys[PG.K_e] == 1 and not self.MUSIC_PLAY:
+            AudioEngine.Resume_GA()
+            self.MUSIC_PLAY = True
+        elif intersected:
+            pass
+            #self.light = Light.Color_Change(self.light,(2,1,1))
+  
+            
 
 
     def Movement(self):
@@ -135,8 +148,7 @@ class RayCast_Camera:
         #if keys[PG.K_SPACE]:
             #AudioEngine.Pause_GA()
 
-        if keys[PG.K_BACKSPACE]:
-            AudioEngine.Resume_GA()
+        
     
 
     def get_view_matrix(self):

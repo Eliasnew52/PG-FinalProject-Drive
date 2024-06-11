@@ -6,7 +6,7 @@ FieldOfView = 50
 NEAR = 0.1
 FAR = 100
 SPEED = 0.01
-SENSIVITY = 0.25
+SENSIVITY = 0.10
 class Camera:
     def __init__(self,app, position =(0,0,4), pitch = 0 , yaw = 90 ):
         self.app = app

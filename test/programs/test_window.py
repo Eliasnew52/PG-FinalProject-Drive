@@ -10,10 +10,10 @@ from programs.SoundEngine import AudioEngine
 from programs.LightEngine import Light
 
 # Limites del Mouse (x, y, width, height)
-BOUND_LEFT = 370
-BOUND_TOP = 260
-BOUND_RIGHT = 720
-BOUND_BOTTOM = 480
+BOUND_LEFT = 540
+BOUND_TOP = 310
+BOUND_RIGHT = 1480
+BOUND_BOTTOM = 740
 
 class GraphicsEngine:
     def __init__(self, win_size = (1920, 1080)):
@@ -47,17 +47,17 @@ class GraphicsEngine:
         #self.context.front_face='cw'
         self.context.enable(flags=mgl.DEPTH_TEST | mgl.CULL_FACE)
 
+        #Light
+
+        self.Light = Light()
         #Creacion del Objeto Camera
-        self.camera = RayCast_Camera(self)
+        self.camera = RayCast_Camera(self, self.Light)
 
         #Creacion de un Objeto para medir el Tiempo
         self.clock = PG.time.Clock()
         self.time = 0
         self.delta_time = 0
 
-        #Light
-
-        self.Light = Light()
         #Scene
         self.scene = Cube(self)
         self.AudioEng = AudioEngine
