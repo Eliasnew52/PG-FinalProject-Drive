@@ -14,7 +14,7 @@ class Cube:
         self.ShaderProgram = self.get_shader_program('default')
         self.VAO = self.get_VAO()
         self.model_matrix = self.get_model_matrix()
-        self.texture = self.get_texture(path='textures/ryan_gosling.jpeg')
+        self.texture = self.get_texture(path='PG-FinalProject-Drive/test/programs/textures/ryan_gosling.jpeg')
         self.on_init()
 
 
@@ -113,10 +113,10 @@ class Cube:
         return VBO
     
     def get_shader_program(self, shader_name):
-        with open(f'shaders/{shader_name}.vert') as file:
+        with open(f'PG-FinalProject-Drive/test/programs/shaders/{shader_name}.vert') as file:
             vertex_shader = file.read()
 
-        with open(f'shaders/{shader_name}.frag') as file:
+        with open(f'PG-FinalProject-Drive/test/programs/shaders/{shader_name}.frag') as file:
             fragment_shader = file.read()
         
         program = self.context.program(vertex_shader = vertex_shader, fragment_shader = fragment_shader)

@@ -1,6 +1,6 @@
 import glm
 import pygame as PG
-from SoundEngine import AudioEngine
+from programs.SoundEngine import AudioEngine
 
 FieldOfView = 50
 NEAR = 0.1

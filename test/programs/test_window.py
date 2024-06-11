@@ -3,11 +3,11 @@ import moderngl as mgl
 import numpy
 import sys
 
-from models import *
-from camera import Camera
-from RayCast import RayCast_Camera
-from SoundEngine import AudioEngine
-from LightEngine import Light
+from programs.models import *
+from programs.camera import Camera
+from programs.RayCast import RayCast_Camera
+from programs.SoundEngine import AudioEngine
+from programs.LightEngine import Light
 
 class GraphicsEngine:
     def __init__(self, win_size = (1080,720)):
