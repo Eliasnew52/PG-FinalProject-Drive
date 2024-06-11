@@ -10,7 +10,7 @@ from programs.SoundEngine import AudioEngine
 from programs.LightEngine import Light
 
 class GraphicsEngine:
-    def __init__(self, win_size = (1080,720)):
+    def __init__(self, win_size = (1920, 1080)):
         #inicializamos el modulo de PyGame
        
         PG.init()
