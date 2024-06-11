@@ -40,7 +40,7 @@ pip install -r requirements.txt
 ```
 4. Run the application:
 ```
-
+python main.py
 ```
    
 You can also see a demo here.
