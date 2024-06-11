@@ -9,6 +9,12 @@ from RayCast import RayCast_Camera
 from SoundEngine import AudioEngine
 from LightEngine import Light
 
+# Limites del Mouse (x, y, width, height)
+BOUND_LEFT = 370
+BOUND_TOP = 260
+BOUND_RIGHT = 720
+BOUND_BOTTOM = 480
+
 class GraphicsEngine:
     def __init__(self, win_size = (1080,720)):
         #inicializamos el modulo de PyGame
@@ -33,6 +39,8 @@ class GraphicsEngine:
         #Configuracion del Mouse
         PG.event.set_grab(True)
         PG.mouse.set_visible(True)
+        #initally set Mouse at Center
+        PG.mouse.set_pos((win_size[0]/2, win_size[1]/2))
 
         #Detectamos y Creamos el Contexto de OpenGL
         self.context= mgl.create_context()
@@ -75,11 +83,23 @@ class GraphicsEngine:
     def Run(self):
         self.AudioEng.Global_Audio("Nightcall")
         while True:
+            
             self.get_time()
             self.Check_Events()
             self.camera.Update()
             self.Render()
+
+            #Limit Mouse Movement
+            mouse_x, mouse_y = PG.mouse.get_pos()
+            # Clamp the mouse position to the boundaries
+            clamped_x = max(BOUND_LEFT, min(mouse_x, BOUND_RIGHT))
+            clamped_y = max(BOUND_TOP, min(mouse_y, BOUND_BOTTOM))
+            # Update the mouse position if it's outside the bounds
+            if (mouse_x, mouse_y) != (clamped_x, clamped_y):
+                PG.mouse.set_pos((clamped_x, clamped_y))
+
             self.delta_time = self.clock.tick(60)
+            
 
 
 if __name__ =='__main__':
