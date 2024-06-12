@@ -9,42 +9,38 @@ from programs.RayCast import RayCast_Camera
 from programs.SoundEngine import AudioEngine
 from programs.LightEngine import Light
 
-# Limites del Mouse (x, y, width, height)
-BOUND_LEFT = 540
-BOUND_TOP = 310
-BOUND_RIGHT = 1480
-BOUND_BOTTOM = 740
-
 class GraphicsEngine:
     def __init__(self, win_size = (1920, 1080)):
-        #inicializamos el modulo de PyGame
-       
+        # Inicializamos el módulo de PyGame
         PG.init()
         
-        #Music
+        # Music
         PG.mixer.init()
 
-        #Definimos un tamaño de Pantalla
+        # Definimos un tamaño de Pantalla
         self.WIN_SIZE = win_size
-        #Configuracion de Atributos de OpenGL
-        PG.display.gl_set_attribute(PG.GL_CONTEXT_MAJOR_VERSION,3)
-        PG.display.gl_set_attribute(PG.GL_CONTEXT_MINOR_VERSION,3)
+        self.SCREEN_WIDTH, self.SCREEN_HEIGHT = self.WIN_SIZE
+        self.HALF_WIDTH = self.SCREEN_WIDTH // 2
+        self.HALF_HEIGHT = self.SCREEN_HEIGHT // 2
+
+        # Configuración de Atributos de OpenGL
+        PG.display.gl_set_attribute(PG.GL_CONTEXT_MAJOR_VERSION, 3)
+        PG.display.gl_set_attribute(PG.GL_CONTEXT_MINOR_VERSION, 3)
         PG.display.gl_set_attribute(PG.GL_CONTEXT_PROFILE_MASK, PG.GL_CONTEXT_PROFILE_CORE)
 
-        #Creacion del Contexto de OpenGL (Buffers)
+        # Creación del Contexto de OpenGL (Buffers)
         PG.display.set_mode(self.WIN_SIZE, flags=PG.OPENGL | PG.DOUBLEBUF)
-        #Trabajaremos con Dos Buffers para Dibujar, Uno se Muestra, mientras que el otro Dibuja
-        #Una vez se termine de dibujar, los Buffers se cambia de lugar para mostrar el Dibujo y se repite
+        # Trabajaremos con Dos Buffers para Dibujar, Uno se Muestra, mientras que el otro Dibuja
+        # Una vez se termine de dibujar, los Buffers se cambia de lugar para mostrar el Dibujo y se repite
 
-        #Configuracion del Mouse
+        # Configuración del Mouse
         PG.event.set_grab(True)
         PG.mouse.set_visible(True)
-        #initally set Mouse at Center
-        PG.mouse.set_pos((win_size[0]/2, win_size[1]/2))
+        # Inicialmente, establecer el mouse en el centro
+        PG.mouse.set_pos((self.HALF_WIDTH, self.HALF_HEIGHT))
 
-        #Detectamos y Creamos el Contexto de OpenGL
-        self.context= mgl.create_context()
-        #self.context.front_face='cw'
+        # Detectamos y Creamos el Contexto de OpenGL
+        self.context = mgl.create_context()
         self.context.enable(flags=mgl.DEPTH_TEST | mgl.CULL_FACE)
 
         #Light
@@ -53,7 +49,7 @@ class GraphicsEngine:
         #Creacion del Objeto Camera
         self.camera = RayCast_Camera(self, self.Light)
 
-        #Creacion de un Objeto para medir el Tiempo
+        # Creación de un Objeto para medir el Tiempo
         self.clock = PG.time.Clock()
         self.time = 0
         self.delta_time = 0
@@ -62,7 +58,11 @@ class GraphicsEngine:
         self.scene = Cube(self)
         self.AudioEng = AudioEngine
 
-      
+        # Calcular los límites del mouse dinámicamente
+        self.BOUND_LEFT = self.HALF_WIDTH - 100
+        self.BOUND_TOP = self.HALF_HEIGHT - 100
+        self.BOUND_RIGHT = self.HALF_WIDTH + 100
+        self.BOUND_BOTTOM = self.HALF_HEIGHT + 100
 
     def Check_Events(self):
         for event in PG.event.get():
@@ -72,39 +72,33 @@ class GraphicsEngine:
                 sys.exit()
 
     def Render(self):
-        #Limpiar el FrameBuffer
-        self.context.clear(color=(0.08,0.16,0.18))
+        # Limpiar el FrameBuffer
+        self.context.clear(color=(0.08, 0.16, 0.18))
         self.scene.render()
         PG.display.flip()
-    
+
     def get_time(self):
         self.time = PG.time.get_ticks() * 0.001
 
     def Run(self):
         self.AudioEng.Global_Audio("Nightcall")
         while True:
-            
             self.get_time()
             self.Check_Events()
             self.camera.Update()
             self.Render()
 
-            #Limit Mouse Movement
+            # Limitar el movimiento del Mouse
             mouse_x, mouse_y = PG.mouse.get_pos()
-            # Clamp the mouse position to the boundaries
-            clamped_x = max(BOUND_LEFT, min(mouse_x, BOUND_RIGHT))
-            clamped_y = max(BOUND_TOP, min(mouse_y, BOUND_BOTTOM))
-            # Update the mouse position if it's outside the bounds
+            # Ajustar la posición del mouse a los límites
+            clamped_x = max(self.BOUND_LEFT, min(mouse_x, self.BOUND_RIGHT))
+            clamped_y = max(self.BOUND_TOP, min(mouse_y, self.BOUND_BOTTOM))
+            # Actualizar la posición del mouse si está fuera de los límites
             if (mouse_x, mouse_y) != (clamped_x, clamped_y):
                 PG.mouse.set_pos((clamped_x, clamped_y))
 
             self.delta_time = self.clock.tick(60)
-            
 
-
-if __name__ =='__main__':
+if __name__ == '__main__':
     app = GraphicsEngine()
     app.Run()
-
-
-
