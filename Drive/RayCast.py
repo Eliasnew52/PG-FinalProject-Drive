@@ -6,7 +6,7 @@ FOV = 50  # deg
 NEAR = 0.1
 FAR = 100
 SPEED = 0.005
-SENSITIVITY = 0.25
+SENSITIVITY = 0.29
 
 
 
@@ -99,7 +99,7 @@ class RayCast_Camera:
             AudioEngine.Pause_GA()
             print("Intersection detected!")
             self.MUSIC_PLAY = False
-        elif intersected and keys[pg.K_e] == 1 and not self.MUSIC_PLAY:
+        elif intersected and keys[pg.K_q] == 1 and not self.MUSIC_PLAY:
             AudioEngine.Resume_GA()
             self.MUSIC_PLAY = True
 

@@ -10,6 +10,7 @@ FAR = 100
 SPEED = 0.01
 SENSIVITY = 0.25
 MUSIC_PLAY = True
+
 class RayCast_Camera:
     def __init__(self,app, light, position =(0,0,4), pitch = 0 , yaw = 90 ):
         self.app = app
@@ -107,7 +108,8 @@ class RayCast_Camera:
             AudioEngine.Pause_GA()
             print("Intersection detected!")
             self.MUSIC_PLAY = False
-        elif intersected and keys[PG.K_e] == 1 and not self.MUSIC_PLAY:
+            
+        elif intersected and keys[PG.K_q] == 1 and not self.MUSIC_PLAY:
             AudioEngine.Resume_GA()
             self.MUSIC_PLAY = True
         elif intersected:
