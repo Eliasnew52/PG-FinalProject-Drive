@@ -1,0 +1,11 @@
+Model Information:
+* title:	GTA 1: San Andreas Upscaled Map
+* source:	https://sketchfab.com/3d-models/gta-1-san-andreas-upscaled-map-e337a263b4dc4327bc9945aac7a0ef39
+* author:	bacon_master (https://sketchfab.com/bacon_master)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "GTA 1: San Andreas Upscaled Map" (https://sketchfab.com/3d-models/gta-1-san-andreas-upscaled-map-e337a263b4dc4327bc9945aac7a0ef39) by bacon_master (https://sketchfab.com/bacon_master) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

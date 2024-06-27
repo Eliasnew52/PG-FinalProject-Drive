@@ -10,6 +10,8 @@ class VBO:
         self.vbos['cat'] = CatVBO(ctx)
         self.vbos['skybox'] = SkyBoxVBO(ctx)
         self.vbos['advanced_skybox'] = AdvancedSkyBoxVBO(ctx)
+        self.vbos['city'] = CityVBO(ctx)
+        self.vbos['vice_city'] = ViceCityVBO(ctx)
 
     def destroy(self):
         [vbo.destroy() for vbo in self.vbos.values()]
@@ -84,13 +86,59 @@ class CatVBO(BaseVBO):
         self.format = '2f 3f 3f'
         self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
 
+    def get_vertex_data(self):       
+        try:
+        # Load the OBJ file with caching and parsing enabled
+            objs = pywavefront.Wavefront('objects/cat/20430_Cat_v1_NEW.obj', cache=True, parse=True)
+        
+        # Check if there are any materials loaded
+            if not objs.materials:
+                raise ValueError("No materials found in the OBJ file.")
+        
+        # Extract a material from the loaded OBJ
+            material = objs.materials.popitem()[1]
+        
+        # Check if the material has vertex data
+            if not hasattr(material, 'vertices'):
+                raise ValueError("No vertex data found in the material.")
+        
+        # Get the vertex data from the material
+            vertex_data = material.vertices
+        
+        # Convert the vertex data to a NumPy array of type float32
+            vertex_data = np.array(vertex_data, dtype='f4')
+        
+            return vertex_data
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return None
+
+
+class CityVBO(BaseVBO):
+    def __init__(self, app):
+        super().__init__(app)
+        self.format = '2f 3f 3f'
+        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
+
     def get_vertex_data(self):
-        objs = pywavefront.Wavefront('objects/cat/20430_Cat_v1_NEW.obj', cache=True, parse=True)
+        objs = pywavefront.Wavefront('objects/city/scene.obj', cache=True, parse=True)
         obj = objs.materials.popitem()[1]
         vertex_data = obj.vertices
         vertex_data = np.array(vertex_data, dtype='f4')
         return vertex_data
 
+class ViceCityVBO(BaseVBO):
+    def __init__(self, app):
+        super().__init__(app)
+        self.format = '2f 3f 3f'
+        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
+
+    def get_vertex_data(self):
+        objs = pywavefront.Wavefront('objects/vice_city/scene.obj', cache=True, parse=True)
+        obj = objs.materials.popitem()[1]
+        vertex_data = obj.vertices
+        vertex_data = np.array(vertex_data, dtype='f4')
+        return vertex_data
 
 class SkyBoxVBO(BaseVBO):
     def __init__(self, ctx):

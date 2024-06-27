@@ -2,6 +2,7 @@ from VBO import VBO
 from ShaderProgram import ShaderProgram
 
 
+#VERTEX OBJECT ARRAY
 class VAO:
     def __init__(self, ctx):
         self.ctx = ctx
@@ -18,6 +19,18 @@ class VAO:
         self.vaos['cat'] = self.get_vao(
             program=self.program.programs['default'],
             vbo=self.vbo.vbos['cat'])
+        
+    
+        # City vao
+        self.vaos['city'] = self.get_vao(
+            program=self.program.programs['default'],
+            vbo=self.vbo.vbos['city'])
+        
+        
+        # Vice City vao
+        self.vaos['vice_city'] = self.get_vao(
+            program=self.program.programs['default'],
+            vbo=self.vbo.vbos['vice_city'])
 
         # skybox vao
         self.vaos['skybox'] = self.get_vao(
