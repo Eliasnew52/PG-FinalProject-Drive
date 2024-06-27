@@ -8,6 +8,7 @@ from LightEngine import Light
 from Mesh import Mesh
 from Scene import Scene
 from SoundEngine import AudioEngine
+from Scene_Renderer import SceneRenderer
 
 
 class GraphicsEngine:
@@ -41,7 +42,7 @@ class GraphicsEngine:
         # detect and use existing opengl context
         self.ctx = mgl.create_context()
         # self.ctx.front_face = 'cw'
-        self.ctx.enable(flags=mgl.DEPTH_TEST | mgl.CULL_FACE)
+        self.ctx.enable(flags=mgl.DEPTH_TEST)
         # create an object to help track time
         self.clock = pg.time.Clock()
         self.time = 0
@@ -54,6 +55,9 @@ class GraphicsEngine:
         self.mesh = Mesh(self)
         # scene
         self.scene = Scene(self)
+
+         # renderer
+        self.scene_renderer = SceneRenderer(self)
 
         #Audio Engine
         self.AudioEng = AudioEngine
@@ -68,6 +72,7 @@ class GraphicsEngine:
         for event in pg.event.get():
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 self.mesh.destroy()
+                self.scene_renderer.destroy()
                 pg.quit()
                 sys.exit()
 
@@ -75,7 +80,7 @@ class GraphicsEngine:
         # clear framebuffer
         self.ctx.clear(color=(0.08, 0.16, 0.18))
         # render scene
-        self.scene.render()
+        self.scene_renderer.render()
         # swap buffers
         pg.display.flip()
 

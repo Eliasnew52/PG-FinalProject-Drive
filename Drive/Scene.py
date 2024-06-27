@@ -17,15 +17,13 @@ class Scene:
         app = self.app
         add = self.add_object
 
-        n, s = 30, 3
-        for x in range(-n, n, s):
-            for z in range(-n, n, s):
-                add(Cube(app, pos=(x, -s, z)))
+        # cat
+        #add(Cat(app, pos=(0, 10, -10)))
 
-        add(City(app, pos=(0, 0, 0)))
-   
+        #City
+        self.City = City(app, pos=(0, 0, 0), scale=(3, 3, 3), tex_id='city')
+        add(self.City)
 
-    def render(self):
-        for obj in self.objects:
-            obj.render()
-        self.skybox.render()
+    def update(self):
+        pass
+        #self.moving_cube.rot.xyz = self.app.time

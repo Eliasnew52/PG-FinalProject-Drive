@@ -26,6 +26,11 @@ class VAO:
             program=self.program.programs['default'],
             vbo=self.vbo.vbos['city'])
         
+         # shadow city vao
+        self.vaos['shadow_city'] = self.get_vao(
+            program=self.program.programs['shadow_map'],
+            vbo=self.vbo.vbos['city'])
+        
         
         # Vice City vao
         self.vaos['vice_city'] = self.get_vao(
@@ -43,7 +48,7 @@ class VAO:
             vbo=self.vbo.vbos['advanced_skybox'])
 
     def get_vao(self, program, vbo):
-        vao = self.ctx.vertex_array(program, [(vbo.vbo, vbo.format, *vbo.attribs)])
+        vao = self.ctx.vertex_array(program, [(vbo.vbo, vbo.format, *vbo.attribs)], skip_errors=True)
         return vao
 
     def destroy(self):
