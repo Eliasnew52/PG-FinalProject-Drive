@@ -21,21 +21,36 @@ class VAO:
             vbo=self.vbo.vbos['cat'])
         
     
-        # City vao
-        self.vaos['city'] = self.get_vao(
+        # city1 vao
+        self.vaos['city1'] = self.get_vao(
             program=self.program.programs['default'],
-            vbo=self.vbo.vbos['city'])
-        
-         # shadow city vao
-        self.vaos['shadow_city'] = self.get_vao(
+            vbo=self.vbo.vbos['city1'])
+
+        # shadow city1 vao
+        self.vaos['shadow_city1'] = self.get_vao(
             program=self.program.programs['shadow_map'],
-            vbo=self.vbo.vbos['city'])
+            vbo=self.vbo.vbos['city1'])
         
-        
-        # Vice City vao
-        self.vaos['vice_city'] = self.get_vao(
+        # city2 vao
+        self.vaos['city2'] = self.get_vao(
             program=self.program.programs['default'],
-            vbo=self.vbo.vbos['vice_city'])
+            vbo=self.vbo.vbos['city2'])
+
+        # shadow city2 vao
+        self.vaos['shadow_city2'] = self.get_vao(
+            program=self.program.programs['shadow_map'],
+            vbo=self.vbo.vbos['city2'])
+        
+        # city3 vao
+        self.vaos['city3'] = self.get_vao(
+            program=self.program.programs['default'],
+            vbo=self.vbo.vbos['city3'])
+
+        # shadow city3 vao
+        self.vaos['shadow_city3'] = self.get_vao(
+            program=self.program.programs['shadow_map'],
+            vbo=self.vbo.vbos['city3'])
+
 
         # skybox vao
         self.vaos['skybox'] = self.get_vao(
