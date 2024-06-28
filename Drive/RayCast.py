@@ -2,16 +2,16 @@ import glm
 import pygame as pg
 from SoundEngine import AudioEngine
 
-FOV = 50  # deg
-NEAR = 0.1
-FAR = 100
-SPEED = 0.005
+FOV = 60  # deg
+NEAR = 1
+FAR = 10000
+SPEED = 1
 SENSITIVITY = 0.29
 
 
 
 class RayCast_Camera:
-    def __init__(self, app, position=(0, 0, 4), yaw=-90, pitch=0):
+    def __init__(self, app, position=(100, 20, -200), yaw=-90, pitch=0):
         self.app = app
         self.aspect_ratio = app.WIN_SIZE[0] / app.WIN_SIZE[1]
         self.position = glm.vec3(position)
@@ -21,6 +21,11 @@ class RayCast_Camera:
         self.forward = glm.vec3(0, 0, -1)
         self.yaw = yaw
         self.pitch = pitch
+
+        self.x = 0
+        self.z = 0
+        self.Limits_x = glm.vec2(2500, 40)
+        self.Limits_z =glm.vec2(-30, -2500) 
 
         # view matrix
         self.m_view = self.get_view_matrix()
@@ -107,13 +112,33 @@ class RayCast_Camera:
         velocity = SPEED * self.app.delta_time
         keys = pg.key.get_pressed()
         if keys[pg.K_w]:
-            self.position += self.forward * velocity
+            self.z = self.position[2] + self.forward[2] * velocity
+            self.x = self.position[0] + self.forward[0] * velocity
+          
+            if self.Limits_z[0] > self.z > self.Limits_z[1] and self.Limits_x[0] > self.x > self.Limits_x[1] :
+                self.position[2] = self.z
+                self.position[0] = self.x
         if keys[pg.K_s]:
-            self.position -= self.forward * velocity
+            self.z = self.position[2] - self.forward[2] * velocity
+            self.x = self.position[0] - self.forward[0] * velocity
+           
+            if self.Limits_z[1] < self.z < self.Limits_z[0] and self.Limits_x[1] < self.x < self.Limits_x[0] :
+                self.position[2] = self.z
+                self.position[0] = self.x
         if keys[pg.K_a]:
-            self.position -= self.right * velocity
+            self.x = self.position[0] - self.right[0] * velocity
+            self.z = self.position[2] - self.right[2] * velocity
+           
+            if self.Limits_x[1] < self.x < self.Limits_x[0] and self.Limits_z[1] < self.z < self.Limits_z[0] :
+                self.position[0] = self.x
+                self.position[2] = self.z
         if keys[pg.K_d]:
-            self.position += self.right * velocity
+            self.x = self.position[0] + self.right[0] * velocity
+            self.z = self.position[2] + self.right[2] * velocity
+          
+            if self.Limits_x[0] > self.x > self.Limits_x[1] and self.Limits_z[0] > self.z > self.Limits_z[1] :
+                self.position[0] = self.x
+                self.position[2] = self.z
         
        
 
