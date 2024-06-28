@@ -11,7 +11,9 @@ class Texture:
         self.textures[1] = self.get_texture(path='textures/img_1.png')
         self.textures[2] = self.get_texture(path='textures/img_2.png')
         self.textures['cat'] = self.get_texture(path='objects/cat/20430_cat_diff_v1.jpg')
-        self.textures['city'] = self.get_texture(path='objects/city/textures/lambert1.002_baseColor.png')
+        self.textures['city1'] = self.get_texture(path='objects/city1/textures/lambert1.002_baseColor.png')
+        self.textures['city2'] = self.get_texture(path='objects/city2/textures/VC_Map_Upscaled_baseColor.png')
+        self.textures['city3'] = self.get_texture(path='objects/city3/textures/GTA1 San Andreas-art-scale-2_00x.png')
         self.textures['skybox'] = self.get_texture_cube(dir_path='textures/skybox1/', ext='png')
         self.textures['depth_texture'] = self.get_depth_texture()
 
