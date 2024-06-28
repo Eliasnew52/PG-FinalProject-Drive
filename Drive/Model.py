@@ -93,9 +93,19 @@ class Cat(ExtendedBaseModel):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 
-class City(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city', tex_id='city',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
+class City1(ExtendedBaseModel):
+    def __init__(self, app, vao_name='city1', tex_id='city1',
+                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(5, 5, 5)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+        
+class City2(ExtendedBaseModel):
+    def __init__(self, app, vao_name='city2', tex_id='city2',
+                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(1000, 1000, 1000)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+        
+class City3(ExtendedBaseModel):
+    def __init__(self, app, vao_name='city3', tex_id='city3',
+                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(1000, 1000, 1000)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 
