@@ -20,9 +20,10 @@ class Scene:
         # cat
         #add(Cat(app, pos=(0, 10, -10)))
 
-        #City
-        self.City = City(app, pos=(0, 0, 0), scale=(3, 3, 3), tex_id='city')
-        add(self.City)
+        add(City1(app, pos=(0, 0, 0)))
+        # add(City2(app, pos=(0, 0, 0)))
+        # add(City3(app, pos=(0, 0, 0)))
+
 
     def update(self):
         pass
