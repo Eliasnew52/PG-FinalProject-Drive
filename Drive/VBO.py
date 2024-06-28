@@ -10,8 +10,9 @@ class VBO:
         self.vbos['cat'] = CatVBO(ctx)
         self.vbos['skybox'] = SkyBoxVBO(ctx)
         self.vbos['advanced_skybox'] = AdvancedSkyBoxVBO(ctx)
-        self.vbos['city'] = CityVBO(ctx)
-        self.vbos['vice_city'] = ViceCityVBO(ctx)
+        self.vbos['city1'] = City1VBO(ctx)
+        self.vbos['city2'] = City2VBO(ctx)
+        self.vbos['city3'] = City3VBO(ctx)
 
     def destroy(self):
         [vbo.destroy() for vbo in self.vbos.values()]
@@ -114,31 +115,45 @@ class CatVBO(BaseVBO):
             return None
 
 
-class CityVBO(BaseVBO):
+class City1VBO(BaseVBO):
     def __init__(self, app):
         super().__init__(app)
         self.format = '2f 3f 3f'
         self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
 
     def get_vertex_data(self):
-        objs = pywavefront.Wavefront('objects/city/scene.obj', cache=True, parse=True)
+        objs = pywavefront.Wavefront('objects/city1/scene.obj', cache=True, parse=True)
         obj = objs.materials.popitem()[1]
         vertex_data = obj.vertices
         vertex_data = np.array(vertex_data, dtype='f4')
         return vertex_data
 
-class ViceCityVBO(BaseVBO):
+class City2VBO(BaseVBO):
     def __init__(self, app):
         super().__init__(app)
         self.format = '2f 3f 3f'
         self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
 
     def get_vertex_data(self):
-        objs = pywavefront.Wavefront('objects/vice_city/scene.obj', cache=True, parse=True)
+        objs = pywavefront.Wavefront('objects/city2/gta_city.obj', cache=True, parse=True)
         obj = objs.materials.popitem()[1]
         vertex_data = obj.vertices
         vertex_data = np.array(vertex_data, dtype='f4')
         return vertex_data
+
+class City3VBO(BaseVBO):
+    def __init__(self, app):
+        super().__init__(app)
+        self.format = '2f 3f 3f'
+        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
+
+    def get_vertex_data(self):
+        objs = pywavefront.Wavefront('objects/city3/gta_city2.obj', cache=True, parse=True)
+        obj = objs.materials.popitem()[1]
+        vertex_data = obj.vertices
+        vertex_data = np.array(vertex_data, dtype='f4')
+        return vertex_data
+
 
 class SkyBoxVBO(BaseVBO):
     def __init__(self, ctx):
