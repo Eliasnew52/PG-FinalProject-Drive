@@ -19,8 +19,15 @@ class Scene:
 
         # cat
         #add(Cat(app, pos=(0, 10, -10)))
-
-        add(City1(app, pos=(0, 0, 0)))
+        
+        add(Car1(app, pos=(0, 0, 0)))
+        add(Car2(app, pos=(0, 0, 0)))
+        add(Car3(app, pos=(0, 0, 0)))
+        add(Car4(app, pos=(0, 0, 0)))
+        add(Car5(app, pos=(0, 0, 0)))
+        add(Car6(app, pos=(0, 0, 0)))
+        
+        # add(City1(app, pos=(0, 0, 0)))
         # add(City2(app, pos=(0, 0, 0)))
         # add(City3(app, pos=(0, 0, 0)))
 

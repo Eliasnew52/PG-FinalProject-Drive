@@ -108,6 +108,35 @@ class City3(ExtendedBaseModel):
                  pos=(0, 0, 0), rot=(0, 0, 0), scale=(1000, 1000, 1000)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
+class Car1(ExtendedBaseModel):
+    def __init__(self, app, vao_name='car1', tex_id='car1',
+                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(5, 5, 5)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+        
+class Car2(ExtendedBaseModel):
+    def __init__(self, app, vao_name='car2', tex_id='car2',
+                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(5, 5, 5)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+        
+class Car3(ExtendedBaseModel):
+    def __init__(self, app, vao_name='car3', tex_id='car3',
+                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(5, 5, 5)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+        
+class Car4(ExtendedBaseModel):
+    def __init__(self, app, vao_name='car4', tex_id='car4',
+                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(5, 5, 5)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+
+class Car5(ExtendedBaseModel):
+    def __init__(self, app, vao_name='car5', tex_id='car5',
+                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(5, 5, 5)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+
+class Car6(ExtendedBaseModel):
+    def __init__(self, app, vao_name='car6', tex_id='car6',
+                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(5, 5, 5)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 class SkyBox(BaseModel):
     def __init__(self, app, vao_name='skybox', tex_id='skybox',
