@@ -1,0 +1,15 @@
+{
+  "created_at": "2024-06-29T22:18:04.376709",
+  "version": "0.1",
+  "mtllibs": [
+    "city_edificio_chino5.mtl"
+  ],
+  "vertex_buffers": [
+    {
+      "material": "FillerBuildings1.068",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 0,
+      "byte_length": 9408
+    }
+  ]
+}
