@@ -5,13 +5,13 @@ from SoundEngine import AudioEngine
 FOV = 60  # deg
 NEAR = 1
 FAR = 10000
-SPEED = 1
+SPEED = .2
 SENSITIVITY = 0.29
 
 
 
 class RayCast_Camera:
-    def __init__(self, app, position=(100, 20, -200), yaw=-90, pitch=0):
+    def _init_(self, app, position=(130, 23, -200), yaw=0, pitch=0):
         self.app = app
         self.aspect_ratio = app.WIN_SIZE[0] / app.WIN_SIZE[1]
         self.position = glm.vec3(position)
@@ -31,8 +31,11 @@ class RayCast_Camera:
         self.m_view = self.get_view_matrix()
         # projection matrix
         self.m_proj = self.get_projection_matrix()
-
+        
         self.MUSIC_PLAY = True
+        
+    def get_position(self):
+        return self.position
     
     def get_ray_from_mouse(self):
         # Get the mouse position
@@ -109,33 +112,53 @@ class RayCast_Camera:
             self.MUSIC_PLAY = True
 
     def move(self):
+        
+        # velocity = SPEED * self.app.delta_time
+        # keys = pg.key.get_pressed()
+        
+        # # Forward and Back Buttons
+        # # KEY W PRESSED
+        # if keys[pg.K_w]:
+        #     self.position += self.forward * velocity
+        # # KEY S PRESSED
+        # if keys[pg.K_s]:
+        #     self.position -= self.forward * velocity
+
+        # #Right and Left Buttons
+        # # KEY D PRESSED
+        # if keys[pg.K_d]:
+        #     self.position += self.right * velocity
+        # # KEY A PRESSED
+        # if keys[pg.K_a]:
+        #     self.position -= self.right * velocity
+        
         velocity = SPEED * self.app.delta_time
         keys = pg.key.get_pressed()
         if keys[pg.K_w]:
             self.z = self.position[2] + self.forward[2] * velocity
             self.x = self.position[0] + self.forward[0] * velocity
-          
+        
             if self.Limits_z[0] > self.z > self.Limits_z[1] and self.Limits_x[0] > self.x > self.Limits_x[1] :
                 self.position[2] = self.z
                 self.position[0] = self.x
         if keys[pg.K_s]:
             self.z = self.position[2] - self.forward[2] * velocity
             self.x = self.position[0] - self.forward[0] * velocity
-           
+        
             if self.Limits_z[1] < self.z < self.Limits_z[0] and self.Limits_x[1] < self.x < self.Limits_x[0] :
                 self.position[2] = self.z
                 self.position[0] = self.x
         if keys[pg.K_a]:
             self.x = self.position[0] - self.right[0] * velocity
             self.z = self.position[2] - self.right[2] * velocity
-           
+        
             if self.Limits_x[1] < self.x < self.Limits_x[0] and self.Limits_z[1] < self.z < self.Limits_z[0] :
                 self.position[0] = self.x
                 self.position[2] = self.z
         if keys[pg.K_d]:
             self.x = self.position[0] + self.right[0] * velocity
             self.z = self.position[2] + self.right[2] * velocity
-          
+        
             if self.Limits_x[0] > self.x > self.Limits_x[1] and self.Limits_z[0] > self.z > self.Limits_z[1] :
                 self.position[0] = self.x
                 self.position[2] = self.z
