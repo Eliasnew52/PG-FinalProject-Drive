@@ -5,7 +5,7 @@ from SoundEngine import AudioEngine
 FOV = 60  # deg
 NEAR = 1
 FAR = 10000
-SPEED = 1
+SPEED = 0.5
 SENSITIVITY = 0.29
 
 
@@ -112,8 +112,8 @@ class RayCast_Camera:
         velocity = SPEED * self.app.delta_time
         keys = pg.key.get_pressed()
         if keys[pg.K_w]:
-            self.z = self.position[2] + self.forward[2] * velocity
-            self.x = self.position[0] + self.forward[0] * velocity
+            self.z = (self.position[2] + self.forward[2] * velocity)
+            self.x = (self.position[0] + self.forward[0] * velocity)
           
             if self.Limits_z[0] > self.z > self.Limits_z[1] and self.Limits_x[0] > self.x > self.Limits_x[1] :
                 self.position[2] = self.z

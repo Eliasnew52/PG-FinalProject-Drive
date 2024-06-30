@@ -13,6 +13,7 @@ class VBO:
         self.vbos['city1'] = City1VBO(ctx)
         self.vbos['city2'] = City2VBO(ctx)
         self.vbos['city3'] = City3VBO(ctx)
+        self.vbos['car1'] = Car1VBO(ctx)
         self.vbos['car2'] = Car2VBO(ctx)
         self.vbos['car3'] = Car3VBO(ctx)
         self.vbos['car4'] = Car4VBO(ctx)
