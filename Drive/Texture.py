@@ -3,7 +3,7 @@ import moderngl as mgl
 
 
 class Texture:
-    def _init_(self, app):
+    def __init__(self, app):
         self.app = app
         self.ctx = app.ctx
         self.textures = {}

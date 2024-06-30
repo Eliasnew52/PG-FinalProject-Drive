@@ -4,7 +4,7 @@ from ShaderProgram import ShaderProgram
 
 #VERTEX OBJECT ARRAY
 class VAO:
-    def _init_(self, ctx):
+    def __init__(self, ctx):
         self.ctx = ctx
         self.vbo = VBO(ctx)
         self.program = ShaderProgram(ctx)
