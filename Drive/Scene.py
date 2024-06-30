@@ -3,7 +3,7 @@ import glm
 
 
 class Scene:
-    def _init_(self, app):
+    def __init__(self, app):
         self.app = app
         self.objects = []
         self.load()
@@ -233,14 +233,13 @@ class Scene:
 
     def update(self):
         
-        for i in range( (2328, 23, -200) ):
     
-            self.moving_car1.pos = (self.app.camera.position[0] + 148, self.app.camera.position[1] - 21, self.app.camera.position[2] - 76) 
-            self.moving_car2.pos = (self.app.camera.position[0] + 148, self.app.camera.position[1] - 21, self.app.camera.position[2] - 76) 
-            self.moving_car3.pos = (self.app.camera.position[0] + 148, self.app.camera.position[1] - 21, self.app.camera.position[2] - 76) 
-            self.moving_car4.pos = (self.app.camera.position[0] + 148, self.app.camera.position[1] - 21, self.app.camera.position[2] - 76) 
-            self.moving_car5.pos = (self.app.camera.position[0] + 148, self.app.camera.position[1] - 21, self.app.camera.position[2] - 76) 
-            self.moving_car6.pos = (self.app.camera.position[0] + 148, self.app.camera.position[1] - 21, self.app.camera.position[2] - 76) 
+        self.moving_car1.pos = (self.app.camera.position[0] + 148, self.app.camera.position[1] - 21, self.app.camera.position[2] - 76) 
+        self.moving_car2.pos = (self.app.camera.position[0] + 148, self.app.camera.position[1] - 21, self.app.camera.position[2] - 76) 
+        self.moving_car3.pos = (self.app.camera.position[0] + 148, self.app.camera.position[1] - 21, self.app.camera.position[2] - 76) 
+        self.moving_car4.pos = (self.app.camera.position[0] + 148, self.app.camera.position[1] - 21, self.app.camera.position[2] - 76) 
+        self.moving_car5.pos = (self.app.camera.position[0] + 148, self.app.camera.position[1] - 21, self.app.camera.position[2] - 76) 
+        self.moving_car6.pos = (self.app.camera.position[0] + 148, self.app.camera.position[1] - 21, self.app.camera.position[2] - 76) 
         
         
         # self.moving_car1.rot.y = self.app.time

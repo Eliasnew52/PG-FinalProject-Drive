@@ -11,7 +11,7 @@ SENSITIVITY = 0.29
 
 
 class RayCast_Camera:
-    def _init_(self, app, position=(130, 23, -200), yaw=0, pitch=0):
+    def __init__(self, app, position=(130, 23, -200), yaw=0, pitch=0):
         self.app = app
         self.aspect_ratio = app.WIN_SIZE[0] / app.WIN_SIZE[1]
         self.position = glm.vec3(position)
