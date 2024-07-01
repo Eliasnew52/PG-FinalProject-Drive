@@ -1,0 +1,21 @@
+{
+  "created_at": "2024-06-29T16:32:15.116372",
+  "version": "0.1",
+  "mtllibs": [
+    "city_liquor11.mtl"
+  ],
+  "vertex_buffers": [
+    {
+      "material": "FillerBuildings1.062",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 0,
+      "byte_length": 576
+    },
+    {
+      "material": "Paramount.013",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 576,
+      "byte_length": 384
+    }
+  ]
+}

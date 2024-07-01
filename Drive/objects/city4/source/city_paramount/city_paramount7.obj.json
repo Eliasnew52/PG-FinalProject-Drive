@@ -1,0 +1,15 @@
+{
+  "created_at": "2024-06-29T15:40:06.947331",
+  "version": "0.1",
+  "mtllibs": [
+    "city_paramount7.mtl"
+  ],
+  "vertex_buffers": [
+    {
+      "material": "Paramount.007",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 0,
+      "byte_length": 960
+    }
+  ]
+}

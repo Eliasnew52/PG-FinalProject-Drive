@@ -1,0 +1,69 @@
+{
+  "created_at": "2024-06-29T14:56:55.619659",
+  "version": "0.1",
+  "mtllibs": [
+    "city_tienda_armas7.mtl"
+  ],
+  "vertex_buffers": [
+    {
+      "material": "FillerBuildings1.041",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 0,
+      "byte_length": 192
+    },
+    {
+      "material": "FillerBuildings1.042",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 192,
+      "byte_length": 192
+    },
+    {
+      "material": "FillerBuildings1.043",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 384,
+      "byte_length": 192
+    },
+    {
+      "material": "FillerBuildings1.044",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 576,
+      "byte_length": 192
+    },
+    {
+      "material": "FillerBuildings1.045",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 768,
+      "byte_length": 192
+    },
+    {
+      "material": "FillerBuildings1.046",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 960,
+      "byte_length": 192
+    },
+    {
+      "material": "FillerBuildings1.047",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 1152,
+      "byte_length": 192
+    },
+    {
+      "material": "FillerBuildings1.048",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 1344,
+      "byte_length": 192
+    },
+    {
+      "material": "FillerBuildings1.049",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 1536,
+      "byte_length": 192
+    },
+    {
+      "material": "FillerBuildings1.050",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 1728,
+      "byte_length": 192
+    }
+  ]
+}
