@@ -28,6 +28,22 @@ def Volumen():
 		SCREEN.blit(sonido_abajo, (850, 25))
 	elif keys[pygame.K_9] and pygame.mixer.music.get_volume() == 0.0:
 		SCREEN.blit(sonido_mute, (850, 25))
+    # Sube volumen
+	if keys[pygame.K_0] and pygame.mixer.music.get_volume() < 1.0:
+		pygame.mixer.music.set_volume(pygame.mixer.music.get_volume() + 0.01)
+		SCREEN.blit(sonido_arriba, (850, 25))
+	elif keys [pygame.K_0] and pygame.mixer.music.get_volume() == 1.0:
+			SCREEN.blit(sonido_max, (850, 25)) 
+    # Desactivar sonido
+	elif keys[pygame.K_m]:
+		pygame.mixer.music.set_volume(0.0)
+		SCREEN.blit(sonido_mute, (850, 25))
+
+	# Reactivar sonido
+	elif keys[pygame.K_COMMA]:
+		pygame.mixer.music.set_volume(1.0)
+		SCREEN.blit(sonido_max, (850, 25))
+   
 def get_font(size): # Returns Press-Start-2P in the desired size
    #Letras
    return pygame.font.Font("assets/font2.ttf", size)
