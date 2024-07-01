@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, os
 from button import Button
 
 pygame.init()
@@ -8,42 +8,50 @@ pygame.display.set_caption("Menu")
 #Fondo del menu
 BG = pygame.image.load("assets/Background.png")
 #Musica de fondo
-keys = pygame.key.get_pressed()#Para el monitereo del volumen
 
-pygame.mixer.music.load('Musica/Nightcall.mp3')
-pygame.mixer.music.play(-1)
+
+music_path = os.path.join(os.path.dirname(__file__), 'Musica', 'Nightcall.mp3')
+if os.path.exists(music_path):
+    pygame.mixer.music.load(music_path)
+    pygame.mixer.music.play(-1)
+else:
+    print(f"Error: No se encontró el archivo de música en {music_path}")
 
 #Iconos del control de volumen
 
-sonido_arriba = pygame.image.load('Musica/iconos/altoparlante.png')
-sonido_abajo = pygame.image.load('Musica/iconos/bajar-volumen.png')
-sonido_mute = pygame.image.load(' Musica/iconos/silenciar.png')
-sonido_max = pygame.image.load('Musica/iconos/altoparlante.png')
 #Funcion de control de volumen
 def Volumen():
-    
-    # Baja volumen
-	if keys[pygame.K_9] and pygame.mixer.music.get_volume() > 0.0:
-		pygame.mixer.music.set_volume(pygame.mixer.music.get_volume() - 0.01)
-		SCREEN.blit(sonido_abajo, (850, 25))
-	elif keys[pygame.K_9] and pygame.mixer.music.get_volume() == 0.0:
-		SCREEN.blit(sonido_mute, (850, 25))
-    # Sube volumen
-	if keys[pygame.K_0] and pygame.mixer.music.get_volume() < 1.0:
-		pygame.mixer.music.set_volume(pygame.mixer.music.get_volume() + 0.01)
-		SCREEN.blit(sonido_arriba, (850, 25))
-	elif keys [pygame.K_0] and pygame.mixer.music.get_volume() == 1.0:
-			SCREEN.blit(sonido_max, (850, 25)) 
-    # Desactivar sonido
-	elif keys[pygame.K_m]:
-		pygame.mixer.music.set_volume(0.0)
-		SCREEN.blit(sonido_mute, (850, 25))
+    sonido_arriba = pygame.image.load('Menu(para_pg)/Musica/iconos/sube-el-volumen.png')
+    sonido_abajo = pygame.image.load('Menu(para_pg)/Musica/iconos/bajar-volumen.png')
+    sonido_mute = pygame.image.load('Menu(para_pg)/Musica/iconos/silenciar.png')
+    sonido_max = pygame.image.load('Menu(para_pg)/Musica/iconos/altoparlante.png')
 
-	# Reactivar sonido
-	elif keys[pygame.K_COMMA]:
-		pygame.mixer.music.set_volume(1.0)
-		SCREEN.blit(sonido_max, (850, 25))
-   
+    keys = pygame.key.get_pressed()  # Para el monitoreo del volumen
+
+    # Baja volumen
+    if keys[pygame.K_9] and pygame.mixer.music.get_volume() > 0.0:
+        pygame.mixer.music.set_volume(pygame.mixer.music.get_volume() - 0.01)
+        SCREEN.blit(sonido_abajo, (850, 25))
+    elif keys[pygame.K_9] and pygame.mixer.music.get_volume() == 0.0:
+        SCREEN.blit(sonido_mute, (850, 25))
+
+    # Sube volumen
+    if keys[pygame.K_0] and pygame.mixer.music.get_volume() < 1.0:
+        pygame.mixer.music.set_volume(pygame.mixer.music.get_volume() + 0.01)
+        SCREEN.blit(sonido_arriba, (850, 25))
+    elif keys[pygame.K_0] and pygame.mixer.music.get_volume() == 1.0:
+        SCREEN.blit(sonido_max, (850, 25))
+
+    # Desactivar sonido
+    if keys[pygame.K_m]:
+        pygame.mixer.music.set_volume(0.0)
+        SCREEN.blit(sonido_mute, (850, 25))
+
+    # Reactivar sonido
+    if keys[pygame.K_COMMA]:
+        pygame.mixer.music.set_volume(1.0)
+        SCREEN.blit(sonido_max, (850, 25))
+
 def get_font(size): # Returns Press-Start-2P in the desired size
    #Letras
    return pygame.font.Font("assets/font2.ttf", size)
@@ -71,7 +79,7 @@ def play():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if PLAY_BACK.checkForInput(PLAY_MOUSE_POS):
                     main_menu()
-
+        Volumen() 
         pygame.display.update()
     
 def options():
@@ -97,7 +105,7 @@ def options():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                     main_menu()
-
+        Volumen() 
         pygame.display.update()
 def MAP():
     while True:
@@ -115,6 +123,7 @@ def MAP():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if  OPTIONS_MAP.checkForInput(MAP_MOUSE_POS):
                     main_menu()
+      
 def main_menu():
     while True:
         SCREEN.blit(BG, (0, 0))
@@ -150,7 +159,7 @@ def main_menu():
                 if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
                     pygame.quit()
                     sys.exit()
-
+        Volumen()    
         pygame.display.update()
 
 main_menu()
