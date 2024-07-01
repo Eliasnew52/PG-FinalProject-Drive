@@ -8,14 +8,26 @@ pygame.display.set_caption("Menu")
 #Fondo del menu
 BG = pygame.image.load("assets/Background.png")
 #Musica de fondo
+keys = pygame.key.get_pressed()#Para el monitereo del volumen
+
 pygame.mixer.music.load('Musica/Nightcall.mp3')
 pygame.mixer.music.play(-1)
 
 #Iconos del control de volumen
+
 sonido_arriba = pygame.image.load('Musica/iconos/altoparlante.png')
 sonido_abajo = pygame.image.load('Musica/iconos/bajar-volumen.png')
 sonido_mute = pygame.image.load(' Musica/iconos/silenciar.png')
 sonido_max = pygame.image.load('Musica/iconos/altoparlante.png')
+#Funcion de control de volumen
+def Volumen():
+    
+    # Baja volumen
+	if keys[pygame.K_9] and pygame.mixer.music.get_volume() > 0.0:
+		pygame.mixer.music.set_volume(pygame.mixer.music.get_volume() - 0.01)
+		SCREEN.blit(sonido_abajo, (850, 25))
+	elif keys[pygame.K_9] and pygame.mixer.music.get_volume() == 0.0:
+		SCREEN.blit(sonido_mute, (850, 25))
 def get_font(size): # Returns Press-Start-2P in the desired size
    #Letras
    return pygame.font.Font("assets/font2.ttf", size)
