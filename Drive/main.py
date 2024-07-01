@@ -93,7 +93,9 @@ class GraphicsEngine:
         self.time = pg.time.get_ticks() * 0.001
 
     def run(self):
-        self.AudioEng.Global_Audio("Nightcall")
+        # self.AudioEng.Global_Audio("Nightcall")
+        self.AudioEng.Global_Audio("Nightcall")	
+
         while True:
             self.get_time()
             self.check_events()
