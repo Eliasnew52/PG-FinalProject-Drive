@@ -77,7 +77,7 @@ def play():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if PLAY_BACK.checkForInput(PLAY_MOUSE_POS):
                     main_menu()
-        Volumen() 
+        #Volumen() 
         pygame.display.update()
     
 def options():
@@ -103,7 +103,7 @@ def options():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                     main_menu()
-        Volumen() 
+        #Volumen() 
         pygame.display.update()
 def MAP():
     while True:
@@ -157,7 +157,7 @@ def main_menu():
                 if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
                     pygame.quit()
                     sys.exit()
-        Volumen()    
+        #Volumen()    
         pygame.display.update()
 
 main_menu()

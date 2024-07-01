@@ -32,7 +32,8 @@ class RayCast_Camera:
         # projection matrix
         self.m_proj = self.get_projection_matrix()
         
-        self.MUSIC_PLAY = True
+        self.Engine = False
+        self.Radio = False
 
         
     def get_position(self):
@@ -113,18 +114,25 @@ class RayCast_Camera:
         #Para la Radio es el indice[6] de los aabbs
         
         intersected = False
+        idle_channel = None
+
         for i in range(len(aabb_min)):
             if self.ray_intersects_aabb(ray_origin, ray_direction, aabb_min[i], aabb_max[i]):
                 intersected = True
                 break
         
-        if intersected and keys[pg.K_e] == 1 and self.MUSIC_PLAY:
-            AudioEngine.Pause_GA()
-            print("Intersection detected!")
-            self.MUSIC_PLAY = False
-        elif intersected and keys[pg.K_q] == 1 and not self.MUSIC_PLAY:
-            AudioEngine.Resume_GA()
-            self.MUSIC_PLAY = True
+        #Engine Startup
+        if intersected and keys[pg.K_e] == 1 and not self.Engine:
+            idle_channel = AudioEngine.EngineStartup()
+            self.Engine = True
+            
+
+        #Engine Stop
+        elif intersected and keys[pg.K_q] == 1 and self.Engine:
+            AudioEngine.StopEngineIdle(idle_channel)
+            self.Engine = False
+
+        
 
 
 
