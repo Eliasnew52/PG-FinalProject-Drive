@@ -17,40 +17,38 @@ if os.path.exists(music_path):
 else:
     print(f"Error: No se encontró el archivo de música en {music_path}")
 
-#Iconos del control de volumen
-
-#Funcion de control de volumen
+"""#Iconos del control de volumen
+sonido_arriba = pygame.image.load('Menu(para_pg)/Musica/iconos/sube-el-volumen.png')
+sonido_abajo = pygame.image.load('Menu(para_pg)/Musica/iconos/bajar-volumen.png')
+sonido_mute = pygame.image.load('Menu(para_pg)/Musica/iconos/silenciar.png')
+sonido_max = pygame.image.load('Menu(para_pg)/Musica/iconos/altoparlante.png')
+#Funcion de control de volumen9
 def Volumen():
-    sonido_arriba = pygame.image.load('Menu(para_pg)/Musica/iconos/sube-el-volumen.png')
-    sonido_abajo = pygame.image.load('Menu(para_pg)/Musica/iconos/bajar-volumen.png')
-    sonido_mute = pygame.image.load('Menu(para_pg)/Musica/iconos/silenciar.png')
-    sonido_max = pygame.image.load('Menu(para_pg)/Musica/iconos/altoparlante.png')
-
     keys = pygame.key.get_pressed()  # Para el monitoreo del volumen
 
     # Baja volumen
     if keys[pygame.K_9] and pygame.mixer.music.get_volume() > 0.0:
         pygame.mixer.music.set_volume(pygame.mixer.music.get_volume() - 0.01)
-        SCREEN.blit(sonido_abajo, (850, 25))
+        # SCREEN.blit(sonido_abajo, (850, 25))
     elif keys[pygame.K_9] and pygame.mixer.music.get_volume() == 0.0:
-        SCREEN.blit(sonido_mute, (850, 25))
+        # SCREEN.blit(sonido_mute, (850, 25))
 
     # Sube volumen
     if keys[pygame.K_0] and pygame.mixer.music.get_volume() < 1.0:
         pygame.mixer.music.set_volume(pygame.mixer.music.get_volume() + 0.01)
-        SCREEN.blit(sonido_arriba, (850, 25))
+        # SCREEN.blit(sonido_arriba, (850, 25))
     elif keys[pygame.K_0] and pygame.mixer.music.get_volume() == 1.0:
-        SCREEN.blit(sonido_max, (850, 25))
+        # SCREEN.blit(sonido_max, (850, 25))
 
     # Desactivar sonido
     if keys[pygame.K_m]:
         pygame.mixer.music.set_volume(0.0)
-        SCREEN.blit(sonido_mute, (850, 25))
+        # SCREEN.blit(sonido_mute, (850, 25))
 
     # Reactivar sonido
     if keys[pygame.K_COMMA]:
         pygame.mixer.music.set_volume(1.0)
-        SCREEN.blit(sonido_max, (850, 25))
+        # SCREEN.blit(sonido_max, (850, 25))"""
 
 def get_font(size): # Returns Press-Start-2P in the desired size
    #Letras
