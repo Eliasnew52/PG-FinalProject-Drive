@@ -44,7 +44,7 @@ class ExtendedBaseModel(BaseModel):
 
     def update(self):
         self.texture.use(location=0)
-        self.program['camPos'].write(self.camera.position)
+        self.program['camPos'].write(glm.vec3(self.camera.position))
         self.program['m_view'].write(self.camera.m_view)
         self.program['m_model'].write(self.m_model)
 
@@ -107,7 +107,7 @@ class Cat(ExtendedBaseModel):
 
 class City1(ExtendedBaseModel):
     def __init__(self, app, vao_name='city1', tex_id='city1',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(50, 50, 50)):
+                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(5, 5, 5)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
         
 class City2(ExtendedBaseModel):
@@ -541,105 +541,6 @@ class City4_63(ExtendedBaseModel):
                  pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
-class City4_64(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_64', tex_id='city4_64',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_65(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_65', tex_id='city4_65',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_66(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_66', tex_id='city4_66',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_67(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_67', tex_id='city4_67',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_68(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_68', tex_id='city4_68',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_69(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_69', tex_id='city4_69',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_70(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_70', tex_id='city4_70',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_71(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_71', tex_id='city4_71',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_72(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_72', tex_id='city4_72',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_73(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_73', tex_id='city4_73',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_74(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_74', tex_id='city4_74',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_75(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_75', tex_id='city4_75',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_76(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_76', tex_id='city4_76',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_77(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_77', tex_id='city4_77',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_78(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_78', tex_id='city4_78',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_79(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_79', tex_id='city4_79',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_80(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_80', tex_id='city4_80',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_81(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_81', tex_id='city4_81',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_82(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_82', tex_id='city4_82',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-
-class City4_83(ExtendedBaseModel):
-    def __init__(self, app, vao_name='city4_83', tex_id='city4_83',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(7, 7, 7)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 class City4_84(ExtendedBaseModel):
     def __init__(self, app, vao_name='city4_84', tex_id='city4_84',

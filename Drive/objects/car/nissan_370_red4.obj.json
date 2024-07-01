@@ -1,12 +1,12 @@
 {
-  "created_at": "2024-06-27T22:13:04.734865",
+  "created_at": "2024-07-01T02:58:45.876318",
   "version": "0.1",
   "mtllibs": [
     "nissan_370_red4.mtl"
   ],
   "vertex_buffers": [
     {
-      "material": "Meshpart4Mtl",
+      "material": "Meshpart4Mtl.001",
       "vertex_format": "T2F_N3F_V3F",
       "byte_offset": 0,
       "byte_length": 134976

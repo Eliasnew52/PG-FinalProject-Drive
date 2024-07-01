@@ -1,6 +1,6 @@
 import pygame as pg
 import moderngl as mgl
-import sys
+import sys, os
 
 from Model import *
 from RayCast import RayCast_Camera
@@ -12,10 +12,10 @@ from Scene_Renderer import SceneRenderer
 
 
 class GraphicsEngine:
-    def __init__(self, win_size=(1920, 1080)):
+    def __init__(self, map, win_size=(1920, 1080) ):
         # init pygame modules
         pg.init()
-
+        self.map = map
          
         # Music
         pg.mixer.init()
@@ -25,7 +25,7 @@ class GraphicsEngine:
         self.SCREEN_WIDTH, self.SCREEN_HEIGHT = self.WIN_SIZE
         self.HALF_WIDTH = self.SCREEN_WIDTH // 2
         self.HALF_HEIGHT = self.SCREEN_HEIGHT // 2
-
+        
         # Configuración de Atributos de OpenGL
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MAJOR_VERSION, 3)
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MINOR_VERSION, 3)
@@ -50,7 +50,12 @@ class GraphicsEngine:
         # light
         self.light = Light()
         # camera
-        self.camera = RayCast_Camera(self)
+        if self.map == 1:
+            self.camera = RayCast_Camera(self, position=(620, 24, -467))
+        if self.map == 2:
+            self.camera = RayCast_Camera(self, position=(620, 24, -467))
+        if self.map == 3:
+            self.camera = RayCast_Camera(self, position=(613, 64, -467), yaw=0)
         # mesh
         self.mesh = Mesh(self)
         # scene
@@ -88,21 +93,21 @@ class GraphicsEngine:
         self.time = pg.time.get_ticks() * 0.001
 
     def run(self):
-        #self.AudioEng.Global_Audio("Nightcall")
+        self.AudioEng.Global_Audio("Nightcall")
         while True:
             self.get_time()
             self.check_events()
             self.camera.update()
             self.render()
 
-            # Limitar el movimiento del Mouse
-            mouse_x, mouse_y = pg.mouse.get_pos()
-            # Ajustar la posición del mouse a los límites
-            clamped_x = max(self.BOUND_LEFT, min(mouse_x, self.BOUND_RIGHT))
-            clamped_y = max(self.BOUND_TOP, min(mouse_y, self.BOUND_BOTTOM))
-            # Actualizar la posición del mouse si está fuera de los límites
-            if (mouse_x, mouse_y) != (clamped_x, clamped_y):
-                pg.mouse.set_pos((clamped_x, clamped_y))
+            # # Limitar el movimiento del Mouse
+            # mouse_x, mouse_y = pg.mouse.get_pos()
+            # # Ajustar la posición del mouse a los límites
+            # clamped_x = max(self.BOUND_LEFT, min(mouse_x, self.BOUND_RIGHT))
+            # clamped_y = max(self.BOUND_TOP, min(mouse_y, self.BOUND_BOTTOM))
+            # # Actualizar la posición del mouse si está fuera de los límites
+            # if (mouse_x, mouse_y) != (clamped_x, clamped_y):
+            #     pg.mouse.set_pos((clamped_x, clamped_y))
 
             self.delta_time = self.clock.tick(60)
 

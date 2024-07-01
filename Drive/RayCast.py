@@ -5,13 +5,13 @@ from SoundEngine import AudioEngine
 FOV = 60  # deg
 NEAR = 1
 FAR = 10000
-SPEED = .2
-SENSITIVITY = 0.29
+SPEED = .1
+SENSITIVITY = 0.1
 
 
 
 class RayCast_Camera:
-    def __init__(self, app, position=(613, 64, -467), yaw=0, pitch=0):
+    def __init__(self, app, position=(613, 64, -467), yaw=-360, pitch=0):
         self.app = app
         self.aspect_ratio = app.WIN_SIZE[0] / app.WIN_SIZE[1]
         self.position = glm.vec3(position)
@@ -24,7 +24,7 @@ class RayCast_Camera:
 
         self.x = 0
         self.z = 0
-        self.Limits_x = glm.vec2(3500, 40)
+        self.Limits_x = glm.vec2(7500, 40)
         self.Limits_z =glm.vec2(-30, -7500) 
 
         # view matrix
@@ -32,8 +32,7 @@ class RayCast_Camera:
         # projection matrix
         self.m_proj = self.get_projection_matrix()
         
-        self.Engine = False
-        self.Radio = False
+        self.MUSIC_PLAY = True
 
         
     def get_position(self):
@@ -63,7 +62,6 @@ class RayCast_Camera:
         t_near = glm.max(glm.max(t1.x, t1.y), t1.z)
         t_far = glm.min(glm.min(t2.x, t2.y), t2.z)
         return t_far >= t_near
-
 
     def rotate(self):
         rel_x, rel_y = pg.mouse.get_rel()
@@ -108,33 +106,29 @@ class RayCast_Camera:
         ray_direction = self.get_ray_from_mouse()
         aabb_max = self.get_dynamic_aabbs_max()
         aabb_min = self.get_dynamic_aabbs_min()
-        
 
         #Logica del Raycast - Actualmente Config para MAnipular Musica con cualquier interseccion
         #Para la Radio es el indice[6] de los aabbs
         
         intersected = False
-        idle_channel = None
-
         for i in range(len(aabb_min)):
             if self.ray_intersects_aabb(ray_origin, ray_direction, aabb_min[i], aabb_max[i]):
                 intersected = True
                 break
         
-        #Engine Startup
-        if intersected and keys[pg.K_e] == 1 and not self.Engine:
-            idle_channel = AudioEngine.EngineStartup()
-            self.Engine = True
-            
-
-        #Engine Stop
-        elif intersected and keys[pg.K_q] == 1 and self.Engine:
-            AudioEngine.StopEngineIdle(idle_channel)
-            self.Engine = False
-
-        
+        if intersected and keys[pg.K_e] == 1 and self.MUSIC_PLAY:
+            AudioEngine.Pause_GA()
+            print("Intersection detected!")
+            self.MUSIC_PLAY = False
+        elif intersected and keys[pg.K_q] == 1 and not self.MUSIC_PLAY:
+            AudioEngine.Resume_GA()
+            self.MUSIC_PLAY = True
 
 
+    def pls_rotate(self, yaw_offset, pitch_offset):
+        self.yaw += yaw_offset
+        self.pitch += pitch_offset
+        self.update_camera_vectors()
 
     def move(self):
         
@@ -149,8 +143,8 @@ class RayCast_Camera:
         # if keys[pg.K_s]:
         #     self.position -= self.forward * velocity
 
-        # #Right and Left Buttons
-        # # KEY D PRESSED
+        #Right and Left Buttons
+        # KEY D PRESSED
         # if keys[pg.K_d]:
         #     self.position += self.right * velocity
         # # KEY A PRESSED
@@ -173,20 +167,20 @@ class RayCast_Camera:
             if self.Limits_z[1] < self.z < self.Limits_z[0] and self.Limits_x[1] < self.x < self.Limits_x[0] :
                 self.position[2] = self.z
                 self.position[0] = self.x
-        if keys[pg.K_a]:
-            self.x = self.position[0] - self.right[0] * velocity
-            self.z = self.position[2] - self.right[2] * velocity
+        # if keys[pg.K_a]:
+        #     self.x = self.position[0] - self.right[0] * velocity
+        #     self.z = self.position[2] - self.right[2] * velocity
         
-            if self.Limits_x[1] < self.x < self.Limits_x[0] and self.Limits_z[1] < self.z < self.Limits_z[0] :
-                self.position[0] = self.x
-                self.position[2] = self.z
-        if keys[pg.K_d]:
-            self.x = self.position[0] + self.right[0] * velocity
-            self.z = self.position[2] + self.right[2] * velocity
+        #     if self.Limits_x[1] < self.x < self.Limits_x[0] and self.Limits_z[1] < self.z < self.Limits_z[0] :
+        #         self.position[0] = self.x
+        #         self.position[2] = self.z
+        # if keys[pg.K_d]:
+        #     self.x = self.position[0] + self.right[0] * velocity
+        #     self.z = self.position[2] + self.right[2] * velocity
         
-            if self.Limits_x[0] > self.x > self.Limits_x[1] and self.Limits_z[0] > self.z > self.Limits_z[1] :
-                self.position[0] = self.x
-                self.position[2] = self.z
+        #     if self.Limits_x[0] > self.x > self.Limits_x[1] and self.Limits_z[0] > self.z > self.Limits_z[1] :
+        #         self.position[0] = self.x
+        #         self.position[2] = self.z
         if keys[pg.K_g]:
             print(self.position)
         
