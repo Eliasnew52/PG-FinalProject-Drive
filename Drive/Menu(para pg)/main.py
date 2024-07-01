@@ -11,6 +11,11 @@ BG = pygame.image.load("assets/Background.png")
 pygame.mixer.music.load('Musica/Nightcall.mp3')
 pygame.mixer.music.play(-1)
 
+#Iconos del control de volumen
+sonido_arriba = pygame.image.load('Musica/iconos/altoparlante.png')
+sonido_abajo = pygame.image.load('Musica/iconos/bajar-volumen.png')
+sonido_mute = pygame.image.load(' Musica/iconos/silenciar.png')
+sonido_max = pygame.image.load('Musica/iconos/altoparlante.png')
 def get_font(size): # Returns Press-Start-2P in the desired size
    #Letras
    return pygame.font.Font("assets/font2.ttf", size)
