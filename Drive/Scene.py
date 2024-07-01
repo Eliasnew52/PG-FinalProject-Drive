@@ -26,9 +26,13 @@ class Scene:
         # add(Car5(app))
         # add(Car6(app))
         
-        add(City1(app, pos=(0, 0, 0)))
+        #add(City1(app, pos=(0, 0, 0)))
         # add(City2(app, pos=(0, 0, 0)))
         add(City3(app, pos=(0, 0, 0)))
+
+        #Interaction Stuff
+        self.RadioCube= MovingCube(app,pos=(self.app.camera.position[0] + 5, self.app.camera.position[1]-2, self.app.camera.position[2] + 4) )
+
         self.moving_car1 = MovingCar1(app, pos=self.app.camera.position)
         self.moving_car2 = MovingCar2(app, pos=self.app.camera.position)
         self.moving_car3 = MovingCar3(app, pos=self.app.camera.position)
@@ -42,6 +46,8 @@ class Scene:
         add(self.moving_car4)
         add(self.moving_car5)
         add(self.moving_car6)
+
+        add(self.RadioCube)
 
         # self.moving_cube = MovingCube(app, pos=(0, 100, 8), scale=(3, 3, 3), tex_id=1)
         # add(self.moving_cube)
@@ -240,6 +246,9 @@ class Scene:
         self.moving_car4.pos = (self.app.camera.position[0] + 148, self.app.camera.position[1] - 21, self.app.camera.position[2] - 76) 
         self.moving_car5.pos = (self.app.camera.position[0] + 148, self.app.camera.position[1] - 21, self.app.camera.position[2] - 76) 
         self.moving_car6.pos = (self.app.camera.position[0] + 148, self.app.camera.position[1] - 21, self.app.camera.position[2] - 76) 
+
+        self.RadioCube.pos= (self.app.camera.position[0] + 5, self.app.camera.position[1]-2, self.app.camera.position[2] + 4) 
+ 
         
         
         # self.moving_car1.rot.y = self.app.time

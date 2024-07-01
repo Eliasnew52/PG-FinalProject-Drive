@@ -96,6 +96,9 @@ class MovingCube(Cube):
         self.m_model = self.get_model_matrix()
         super().update()
 
+
+
+
 class Cat(ExtendedBaseModel):
     def __init__(self, app, vao_name='cat', tex_id='cat',
                  pos=(0, 0, 0), rot=(-90, 0, 0), scale=(1, 1, 1)):
@@ -114,7 +117,7 @@ class City2(ExtendedBaseModel):
         
 class City3(ExtendedBaseModel):
     def __init__(self, app, vao_name='city3', tex_id='city3',
-                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(1000, 1000, 1000)):
+                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(3000, 3000, 3000)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 class Car1(ExtendedBaseModel):
