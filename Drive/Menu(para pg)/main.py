@@ -5,10 +5,14 @@ pygame.init()
 
 SCREEN = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Menu")
-
+#Fondo del menu
 BG = pygame.image.load("assets/Background.png")
+#Musica de fondo
+pygame.mixer.music.load('Musica/Nightcall.mp3')
+pygame.mixer.music.play(-1)
 
 def get_font(size): # Returns Press-Start-2P in the desired size
+   #Letras
    return pygame.font.Font("assets/font2.ttf", size)
 
 def play():
